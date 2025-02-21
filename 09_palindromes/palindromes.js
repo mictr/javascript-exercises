@@ -1,8 +1,5 @@
 const palindromes = function (input) {
-  // replace all non-characters with empty string
   const sanitizedInput = input.toLowerCase().replaceAll(/[^a-z0-9]/g, "");
-  console.log({ sanitizedInput });
-  // check for palindrome
 
   for (
     let startIndex = 0, endIndex = sanitizedInput.length - 1;
