@@ -1,12 +1,21 @@
-const findTheOldest = function (people) {
-  people.sort((a, b) => {
-    const aAge = (a.yearOfDeath ?? new Date().getFullYear()) - a.yearOfBirth;
-    const bAge = (b.yearOfDeath ?? new Date().getFullYear()) - b.yearOfBirth;
+const computeAge = (birthYear, deathYear = new Date().getFullYear()) => {
+  return deathYear - birthYear;
+};
 
-    return bAge - aAge;
+const findTheOldest = function (people) {
+  const oldestPerson = people.reduce((currentOldest, currentPerson) => {
+    const currentOldestAge = computeAge(
+      currentOldest.yearOfBirth,
+      currentOldest.yearOfDeath
+    );
+    const currentPersonAge = computeAge(
+      currentPerson.yearOfBirth,
+      currentPerson.yearOfDeath
+    );
+
+    return currentOldestAge >= currentPersonAge ? currentOldest : currentPerson;
   });
 
-  const oldestPerson = people[0];
   return oldestPerson;
 };
 
